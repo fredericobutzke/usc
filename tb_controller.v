@@ -21,6 +21,7 @@ module tb_controller();
 	reg REreq;
 	reg Err1;
 	reg Err0;
+	reg rst;
 
 	reg reseted;
 
@@ -36,7 +37,8 @@ module tb_controller();
 		.LEack(LEack),
 		.REreq(REreq),
 		.Err1(Err1),
-		.Err0(Err0)
+		.Err0(Err0),
+		.rst(rst)
  	);
 
  	initial begin
@@ -50,10 +52,12 @@ module tb_controller();
 		REreq = 'b0;
 		Err1 = 'b0;
 		Err0 = 'b0;
+		rst = 'b0;
 		
 		#(reset_time);
  		Lreq = 'b1;
-
+ 		rst = 'b1;
+ 		
 		#(break_time);
 		$finish;
  	end
