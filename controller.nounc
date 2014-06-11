@@ -1,0 +1,28 @@
+input Lreq 0
+input Rack 0
+input LEack 0
+input REreq 0
+input Err1 0
+input Err0 0
+
+output Lack 0
+output Rreq 0
+output LEreq 0
+output REack 0
+output clk 0
+output sample 0
+
+0 1 	Lreq+		 | LEreq+
+1 2 	LEack+		 | clk+ Rreq+ Lack+
+2 3 	REreq+		 | clk- sample+
+3 4		Err0+		 | REack+ sample-
+3 5		Err1+		 | REack+ sample-
+4 6 	Err0- Rack+	 | 
+5 6 	Err1- Rack+	 | 
+6 7 	Lreq-		 | LEreq-
+7 8		LEack-		 | clk+ Rreq- Lack-
+8 9		REreq-		 | clk- sample+
+9 10	Err0+		 | REack- sample-
+9 11	Err1+		 | REack- sample-
+10 0   	Err0- Rack-	 |
+11 0   	Err1- Rack-	 |
