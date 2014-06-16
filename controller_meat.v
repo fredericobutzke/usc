@@ -15,16 +15,76 @@ module controller(
 );
 
 
-	wire a, b;						
+	wire a, b, z0;						
 	
-	assign #1 Lack = Rack;
-	assign #1 Rreq = LEack;
-	assign #1 LEreq = Lreq;
-	assign #1 REack = rst & (a&LEreq|b&LEreq|REreq&REack|~a&~b&REack);
-	assign #1 clk = ~LEack&~Err1&~Err0&REack|LEack&~Err1&~Err0&~REack;
-	assign #1 sample = ~REreq&~a&~b&REack|REreq&~a&~b&~REack;
+	assign #1 Lack = rst & (Err1 & Rreq | Err0 & Rreq | Lack & ~sample | ~Err1 & ~Err0 & REack);
+	assign #1 Rreq = ~Rack & LEack | LEack & Rreq | Err1 & Rreq | Err0 & Rreq | a & Rreq | b & Rreq | ~Rack & REack & z0 | LEack & ~Err1 & ~Err0 & ~a & ~b & ~z0;	
+	assign #1 LEreq = rst & (Lreq & ~Rack | Lreq & LEreq | Err1 & LEreq & z0 | Err0 & LEreq & z0 | a & LEreq & z0 | b & LEreq & z0 | Lreq & a & ~z0 | Lreq & b & ~z0 | ~Rack & ~a & ~b & LEreq & ~z0 | Lreq & ~Err1 & ~Err0 & ~a & ~b & z0);
+	assign #1 REack = rst & (a & Rreq | b & Rreq | Lack & REack | ~a & ~b & REack);
+	assign #1 clk = Rack & ~LEack & REreq | ~Rack & LEack & ~REreq | ~LEack & ~Err1 & ~Err0 & ~a & ~b & REack & ~z0 | LEack & ~Err1 & ~Err0 & ~a & ~b & ~REack & ~z0;
+	assign #1 sample = rst & (Rack & ~REreq & Lack | ~Rack & REreq & ~Lack | ~a & ~b & sample);
+	assign #1 z0 = rst & (Err1 & z0 | Err0 & z0 | Lreq & a & Rreq | Lreq & b & Rreq | ~Lreq & a & ~Rreq | ~Lreq & b & ~Rreq | Lreq & Rack & z0 | ~Lreq & ~Rack & z0 | Rack & ~LEack & ~Err1 & ~Err0 & ~a & ~b & LEreq | ~Rack & LEack & ~Err1 & ~Err0 & ~a & ~b & ~LEreq);
 	
 	assign #1 a = Err0 ;
-	assign #5 b = Err1 ;
+	assign #5 b = Err1;
+
+	/*
+		Ok z0 =
+		  Err1 z0 +
+		  Err0 z0 +
+		  Lreq a Rreq +
+		  Lreq b Rreq +
+		  Lreq' a Rreq' +
+		  Lreq' b Rreq' +
+		  Lreq Rack z0 +
+		  Lreq' Rack' z0 +
+		  Rack LEack' Err1' Err0' a' b' LEreq +
+		  Rack' LEack Err1' Err0' a' b' LEreq'
+
+		Ok sample =
+		  Rack REreq' Lack +
+		  Rack' REreq Lack' +
+		  a' b' sample 
+
+		Ok clk =
+		  Rack LEack' REreq +
+		  Rack' LEack REreq' +
+		  LEack' Err1' Err0' a' b' REack z0' +
+		  LEack Err1' Err0' a' b' REack' z0' 
+
+		Ok REack =
+		  a Rreq +
+		  b Rreq +
+		  Lack REack +
+		  a' b' REack 
+
+		Ok LEreq =
+		  Lreq Rack' +
+		  Lreq LEreq +
+		  Err1 LEreq z0 +
+		  Err0 LEreq z0 +
+		  a LEreq z0 +
+		  b LEreq z0 +
+		  Lreq a z0' +
+		  Lreq b z0' +
+		  Rack' a' b' LEreq z0' +
+		  Lreq Err1' Err0' a' b' z0 
+
+		Ok Lack =
+		  Err1 Rreq +
+		  Err0 Rreq +
+		  Lack sample' +
+		  Err1' Err0' REack 
+		
+		Ok Rreq =
+		  Rack' LEack +
+		  LEack Rreq +
+		  Err1 Rreq +
+		  Err0 Rreq +
+		  a Rreq +
+		  b Rreq +
+		  Rack' REack z0 +
+		  LEack Err1' Err0' a' b' z0' 
+	*/
 
 endmodule
