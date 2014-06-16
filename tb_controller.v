@@ -1,7 +1,9 @@
 module tb_controller();
 
    // simulation variables
-   parameter hs_delay		  = 5;
+   parameter hs_delay		  		= 5;
+   parameter error_delay		  	= 7;
+   parameter no_error_delay		  	= 2;
 
    parameter   reset_time           = 5;
    parameter   break_time		    = 500;
@@ -24,6 +26,9 @@ module tb_controller();
 	reg rst;
 
 	reg reseted;
+
+	reg state;
+    reg [1:0] cnt ;
 
 	controller uut(
 		.Lack(Lack),
@@ -54,9 +59,13 @@ module tb_controller();
 		Err0 = 'b0;
 		rst = 'b0;
 		
+		state = 'b1;
+		cnt = 'b0;
 		#(reset_time);
- 		Lreq = 'b1;
  		rst = 'b1;
+
+ 		#2
+ 		Lreq = 'b1;
  		
 		#(break_time);
 		$finish;
@@ -65,28 +74,44 @@ module tb_controller();
 
  	//Here I need to simulate the pipeline environment
   	always @ (REack) begin 
- 		#(hs_delay) 
- 		Rack = REack;
+ 		if(rst)	#(hs_delay)	Rack = REack;
 	end
 
-	always @ (Rack) begin 
-		#(hs_delay) 
-		Lreq = ~Rack;
+	always @ (Lack) begin 
+		if(rst)	#(hs_delay)	Lreq = ~Lack;
 	end
 
 	always @ (LEreq) begin 
- 		#(hs_delay) 
-		LEack = LEreq;
+ 		if(rst)	#(hs_delay)	LEack = LEreq;
 	end
 
 	always @ (Rreq) begin 
- 		#(hs_delay) 
- 		REreq = Rreq;
+ 		if(rst)	#(hs_delay)	REreq = Rreq;
 	end
 
+
 	always @ (sample) begin 
- 		#(hs_delay) 
- 		Err0 = sample;
+		if(rst) begin
+			if (state) begin 
+				#2 Err0 = sample;
+				if (~sample) begin
+					cnt = cnt + 1;
+					if(cnt > 1) begin
+					 	state = 'b0 ;
+					 	cnt = 0;
+					end
+				end
+			end else begin
+				#2 Err1 = sample;
+				if (~sample) begin
+					cnt = cnt + 1;
+					if(cnt > 1) begin
+					 	state = 'b1 ;
+					 	cnt = 0;
+					end
+				end
+			end
+		end
 	end
 
 endmodule
