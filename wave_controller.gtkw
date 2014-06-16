@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
-[*] Mon Jun 16 07:55:51 2014
+[*] Mon Jun 16 08:39:58 2014
 [*]
 [dumpfile] "/home/fredericobutzke/Desktop/USC/tb_controller.vcd"
-[dumpfile_mtime] "Mon Jun 16 07:54:47 2014"
-[dumpfile_size] 3943
+[dumpfile_mtime] "Mon Jun 16 08:38:08 2014"
+[dumpfile_size] 3940
 [savefile] "/home/fredericobutzke/Desktop/USC/wave_controller.gtkw"
 [timestart] 0
 [size] 1366 744
 [pos] -1 -1
-*-5.000000 51 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.000000 126 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb_controller.
 [sst_width] 223
 [signals_width] 200
