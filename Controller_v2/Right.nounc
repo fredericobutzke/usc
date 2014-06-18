@@ -1,0 +1,16 @@
+input goLR 0
+input Rack 0
+
+output done 1
+output Rreq 0
+
+0  	1  	goLR+ 	| Rreq+
+1	2	Rack+ 	| done-
+2	3	goLR-	| Rreq-
+3	0	Rack-	| done+
+
+//done =
+//  Rack' 
+//
+//Rreq =
+//  goLR 

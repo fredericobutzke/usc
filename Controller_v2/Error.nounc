@@ -1,0 +1,16 @@
+input REreq 0
+input goME 0
+
+output REack 0
+output goEM 0
+
+0  	1  	REreq+ 	| goEM+
+1	2	goME+	| REack+
+2	3	REreq-	| goEM-
+3	0	goME-	| REack-
+
+//REack =
+//  goME 
+//
+//goEM =
+//  REreq

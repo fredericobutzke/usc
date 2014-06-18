@@ -61,3 +61,4 @@ input b 0
 24	2	Rack- <LEack+>							| clk+ Rreq+
 25	2	Rack- <REreq->							| 
 25	3	Rack- <REreq+>							| sample+
+

@@ -1,0 +1,51 @@
+input goLM 0
+input done 0
+input goEM 0
+input err1 0
+input err0 0
+
+input a 0
+input b 0
+
+output clk 0
+output sample 0
+output goML 0
+output goME 0
+
+0	1	goLM+ done+		| clk+
+1	2	goEM+			| sample+
+2	3	err0+			| clk- goML+
+2	4	err1+			| clk- goML+
+3	5	a+ goLM*		| sample- goME+
+4	7	b+ goLM*		| sample- goME+
+5	8	a- err0- 		| 
+7	8	b- err1- 		|
+8	9	goLM- done-		| clk+
+9	10	goEM-			| sample+
+10	11	err0+			| clk- goML-
+10	12	err1+			| clk- goML-
+11	13	a+ goLM*		| sample- goME-
+12	14	b+ goLM*		| sample- goME-
+13	0	a- err0-  		| 
+14	0	b- err1- 		|
+
+//clk =
+//  goLM' done' err1' err0' goME +
+//  goLM done err1' err0' goME' 
+//
+//sample =
+//  goEM' a' b' goME +
+//  goEM a' b' goME' 
+//
+//goML =
+//  goEM err1 +
+//  goEM err0 +
+//  sample' goML +
+//  err1' err0' goME 
+//
+//goME =
+//  a goML +
+//  b goML +
+//  goML goME +
+//  a' b' goME 
+//
