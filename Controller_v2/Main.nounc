@@ -1,6 +1,6 @@
 input goLM 0
 input Rack 1
-input goEM 0
+input REreq 0
 input err1 0
 input err0 0
 
@@ -10,45 +10,45 @@ input b 0
 output clk 0
 output sample 0
 output goML 0
-output goME 0
+output REack 0
 output Rreq 0
 
 0	  1	  goLM+  Rack-    | clk+ Rreq+
-1	  2	  goEM+			      | sample+
+1	  2	  REreq+		      | sample+
 2	  3	  err0+			      | clk- goML+
 2	  4	  err1+			      | clk- goML+
-3	  5	  a+      	      | sample- goME+
-4	  7	  b+      	      | sample- goME+
+3	  5	  a+      	      | sample- REack+
+4	  7	  b+      	      | sample- REack+
 5	  8	  a- err0- 	      | 
 7	  8	  b- err1-        |
 8	  9	  goLM-  Rack+    | clk+ Rreq-
-9	  10	goEM-			      | sample+
+9	  10	REreq-			      | sample+
 10	11	err0+			      | clk- goML-
 10	12	err1+			      | clk- goML-
-11	13	a+      	      | sample- goME-
-12	14	b+      	      | sample- goME-
+11	13	a+      	      | sample- REack-
+12	14	b+      	      | sample- REack-
 13	0	  a- err0-        | 
 14  0   b- err1-        |
 
 clk =
-  goLM' Rack err1' err0' goME +
-  goLM Rack' err1' err0' goME' 
+  goLM' Rack err1' err0' REack +
+  goLM Rack' err1' err0' REack' 
 
 sample =
-  goEM' a' b' goME +
-  goEM a' b' goME' 
+  REreq' a' b' REack +
+  REreq a' b' REack' 
 
 goML =
   sample' goML +
   err1 Rreq +
   err0 Rreq +
-  err1' err0' goME 
+  err1' err0' REack 
 
-goME =
-  goML goME +
+REack =
+  goML REack +
   a Rreq +
   b Rreq +
-  a' b' goME 
+  a' b' REack 
 
 Rreq =
   goLM Rack' +
