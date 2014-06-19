@@ -9,8 +9,8 @@ output goEM 0
 2	3	REreq-	| goEM-
 3	0	goME-	| REack-
 
-//REack =
-//  goME 
-//
-//goEM =
-//  REreq
+REack =
+  goME 
+
+goEM =
+  REreq 

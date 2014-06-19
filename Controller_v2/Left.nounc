@@ -3,25 +3,21 @@ input LEack 0
 input goML 0
 
 output LEreq 0
-output goLR 0
 output goLM 0
 output Lack 0
 
 0  	1  	Lreq+ 	| LEreq+
-1	2	LEack+	| goLR+ goLM+
+1	2	LEack+	| goLM+
 2	3	goML+	| Lack+
 3	4	Lreq-	| LEreq-
-4	5	LEack-	| goLR- goLM-
+4	5	LEack-	| goLM-
 5	0	goML-	| Lack-
 
-//LEreq =
-//  Lreq 
-//
-//goLR =
-//  LEack 
-//
-//goLM =
-//  LEack 
-//
-//Lack =
-//  goML 
+LEreq =
+  Lreq 
+
+goLM =
+  LEack 
+
+Lack =
+  goML 
