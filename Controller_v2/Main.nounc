@@ -22,13 +22,14 @@ output Rreq 0
 5	  8	  a- err0- 	      | 
 7	  8	  b- err1-        |
 8	  9	  goLM-  Rack+    | clk+ Rreq-
-9	  10	REreq-			      | sample+
+9	  10	REreq-			    | sample+
 10	11	err0+			      | clk- goML-
 10	12	err1+			      | clk- goML-
 11	13	a+      	      | sample- REack-
 12	14	b+      	      | sample- REack-
 13	0	  a- err0-        | 
 14  0   b- err1-        |
+
 
 clk =
   goLM' Rack err1' err0' REack +

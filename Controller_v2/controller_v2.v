@@ -14,7 +14,6 @@ module controller(
 	input rst
 );
 
-
 	//Delta delay
 	wire a, b;						
 	
@@ -31,7 +30,7 @@ module controller(
 	assign #1 goLM = LEack ;
 	assign #1 goML = ~sample & goML & rst | Err1 & Rreq | Err0 & Rreq | ~Err1 & ~Err0 & REack ;	
 
-	assign #1 a = Err0 ;
+	assign #5 a = Err0 ;
 	assign #15 b = Err1;
 
 	

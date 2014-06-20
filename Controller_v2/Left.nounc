@@ -13,6 +13,7 @@ output Lack 0
 4	5	LEack-	| goLM-
 5	0	goML-	| Lack-
 
+
 LEreq =
   Lreq 
 

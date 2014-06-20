@@ -1,18 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
-[*] Thu Jun 19 05:02:36 2014
+[*] Thu Jun 19 19:28:05 2014
 [*]
 [dumpfile] "/home/fredericobutzke/Desktop/USC/Controller_v2/tb_controller.vcd"
-[dumpfile_mtime] "Thu Jun 19 04:59:46 2014"
-[dumpfile_size] 2019
+[dumpfile_mtime] "Thu Jun 19 19:26:08 2014"
+[dumpfile_size] 2468
 [savefile] "/home/fredericobutzke/Desktop/USC/wave_controller.gtkw"
 [timestart] 0
 [size] 1366 744
 [pos] -1 -1
-*-7.000000 165 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 64 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb_controller.
 [sst_width] 223
-[signals_width] 200
+[signals_width] 188
 [sst_expanded] 1
 [sst_vpaned_height] 211
 @200
@@ -41,18 +41,16 @@ tb_controller.clk
 tb_controller.sample
 @200
 -Internal Signals
-@28
+@29
 tb_controller.uut.rst
+@28
 tb_controller.uut.a
 tb_controller.uut.b
-tb_controller.uut.goLR
 tb_controller.uut.goLM
-tb_controller.uut.goEM
 tb_controller.uut.goML
-tb_controller.uut.goME
 @200
 -Testbench Signals
-@25
+@24
 tb_controller.counter_error[1:0]
 tb_controller.counter_rack[1:0]
 [pattern_trace] 1

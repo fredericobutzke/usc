@@ -75,30 +75,38 @@ module tb_controller();
 
 
  	//Here I need to simulate the pipeline environment
-  	always @ (REack) begin 
- 		if(rst && counter_rack < 3) begin
-			#(hs_delay)	Rack = REack;
-			counter_rack = counter_rack + 1;
- 		end
-	end
 
+	//Lreq
 	always @ (Lack) begin 
-		if(rst)	#1	Lreq = ~Lack;
+		if(rst)	#10	Lreq = ~Lack;
 	end
 
+	//LEack
 	always @ (LEreq) begin 
  		if(rst)	#(hs_delay)	LEack = LEreq;
 	end
 
+	//REreq
 	always @ (Rreq) begin 
  		if(rst)	#(hs_delay)	REreq = Rreq;
 	end
+  	
+  	//Rack
+  	always @ (REack) begin 
+ 		if(rst && counter_rack < 3) begin
+			#(hs_delay)	Rack = REack;
+			counter_rack = counter_rack + 1;
+ 		end else begin
+ 			#50 Rack = REack;
+ 			counter_rack = 'b0;
+ 		end
+	end
 
-
+	//Err0 and Err1
 	always @ (sample) begin 
 		if(rst) begin
 			if (state) begin 
-				#2 Err0 = sample;
+				#5 Err0 = sample;
 				if (~sample) begin
 					counter_error = counter_error + 1;
 					if(counter_error > 1) begin
@@ -107,7 +115,7 @@ module tb_controller();
 					end
 				end
 			end else begin
-				#2 Err1 = sample;
+				#5 Err1 = sample;
 				if (~sample) begin
 					counter_error = counter_error + 1;
 					if(counter_error > 1) begin
