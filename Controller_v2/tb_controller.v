@@ -5,7 +5,7 @@ module tb_controller();
    parameter error_delay		  	= 7;
    parameter no_error_delay		  	= 2;
 
-   parameter   reset_time           = 10;
+   parameter   reset_time           = 30;
    parameter   break_time		    = 500;
    parameter   step_time            = 1;
    integer     done                 = 0;

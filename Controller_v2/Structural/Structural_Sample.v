@@ -49,10 +49,10 @@ end
 
 //Structural
 wire d_, c_;
-HS65_GS_AOI22X1 U0 (INTERNAL1, c_, d, c, d_);
-HS65_GS_AND3ABCX18 U1 (zs, a, b, INTERNAL1);
 not(d_, d);
 not(c_, c);
+HS65_GS_AOI22X1 U0 (INTERNAL1, c_, d, c, d_);
+HS65_GS_AND3ABCX18 U1 (zs, a, b, INTERNAL1);
 
 //Function
 assign #1 zb = ~c & ~a & ~b & d | c & ~a & ~b & ~d ;

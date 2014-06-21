@@ -1,12 +1,13 @@
 //	REack = goML & REack & rst 	| b & Rreq 	| a & Rreq 	| ~a & ~b & REack & rst ;
 //		a = 	b & a & rst 	| 	c & d 	| 	e & d 	| 	~e & ~c & a & rst ;
 
-module HS65_GS_AO13 (Z, A, B, C, D);
+module HS65_GS_AOI13X10 (Z, A, B, C, D);
 	output Z;
 	input A, B, C, D;
 
-	and    	 U1 (INTERNAL2, A, B, C) ;
-	or   #1	 U2 (Z, INTERNAL2, D) ;
+	and    U1 (INTERNAL2, A, B, C) ;
+	or    U2 (INTERNAL1, INTERNAL2, D) ;
+	not   #1 U3 (Z, INTERNAL1) ;
 endmodule
 
 module HS65_GS_AO222 (Z, A, B, C, D, E, F);
@@ -29,8 +30,8 @@ wire b, c, d, e ;
 
 initial begin
 
-	//$dumpfile("Structural_Rreq.vcd");
-	//$dumpvars(0, Structural_Rreq);	
+	$dumpfile("Structural_REack.vcd");
+	$dumpvars(0, Structural_REack);	
 
 	rst = 'b0;
 	truth_table = 'b0;
@@ -54,11 +55,15 @@ initial begin
 end
 
 //Structural
-HS65_GS_AO13 U0 (zs, e_, c_, INTERNAL3, INTERNAL1);
-HS65_GS_AO222 U1 (INTERNAL1, e, d, c, d, b, zs);
-not(e_, e);
-not(c_, c);
-and(INTERNAL3, rst, zs);
+wire e_, c_;
+wire zs_;
+
+not #1 (e_, e);
+not #1 (c_, c);
+HS65_GS_AO222 U1 (INTERNAL1, b, INTERNAL2, c, d, e, d);
+HS65_GS_AOI13X10 U0 (zs_, e_, c_, INTERNAL2, INTERNAL1);
+nor #1 (INTERNAL2, ~rst, zs_);
+not #1 (zs, zs_);
 
 //Function
 assign #1 zb = b & zb | c & d | e & d | ~e & ~c & zb & rst ;

@@ -12,14 +12,6 @@ module HS65_GS_AOI222X13 (Z, A, B, C, D, E, F);
 	not   #1 U5 (Z, INTERNAL1) ;
 endmodule
 
-module HS65_GS_NAND2AX14 (Z, A, B);
-	output Z;
-	input A, B;
-
-	not    U1 (INTERNAL1, B) ;
-	or   #1 U2 (Z, A, INTERNAL1) ;
-endmodule
-
 module Structural_Rreq();
 
 wire zb, a2, zs, a5, a, e, f;
@@ -28,15 +20,15 @@ reg [1:0] truth_table ;
 
 initial begin
 
-	//$dumpfile("Structural_Rreq.vcd");
-	//$dumpvars(0, Structural_Rreq);	
+	$dumpfile("Structural_Rreq.vcd");
+	$dumpvars(0, Structural_Rreq);	
 	rst = 'b0;
-	truth_table = 'b1;
+	truth_table = 'b0;
 	#10
 	rst = 'b1;
 
 	$display("Inputs 	|| zb | zs");
-	repeat (2) begin
+	repeat (3) begin
 		#5
 		$display("%b 	||  %b | %b", {f, e}, zb, zs);
 		truth_table = truth_table + 1;
@@ -55,8 +47,8 @@ end
 wire f_;
 not(f_, f);
 HS65_GS_AOI222X13 U0 (INTERNAL2, INTERNAL1, f_, INTERNAL1, e, f_, e);
-nand(INTERNAL1, rst, INTERNAL2);
 not(zs, INTERNAL2);
+and(INTERNAL1, rst, zs);
 
 //Function
 assign #1 zb = e & ~f | e & zb | ~f & zb & rst ;
