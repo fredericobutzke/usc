@@ -13,19 +13,19 @@ output goML 0
 output REack 0
 output Rreq 0
 
-0	  1	  goLM+  Rack-    | clk+ Rreq+
-1	  2	  REreq+		      | sample+
-2	  3	  err0+			      | clk- goML+
-2	  4	  err1+			      | clk- goML+
-3	  5	  a+      	      | sample- REack+
-4	  7	  b+      	      | sample- REack+
-5	  8	  a- err0- 	      | 
-7	  8	  b- err1-        |
-8	  9	  goLM-  Rack+    | clk+ Rreq-
-9	  10	REreq-			    | sample+
-10	11	err0+			      | clk- goML-
-10	12	err1+			      | clk- goML-
-11	13	a+      	      | sample- REack-
-12	14	b+      	      | sample- REack-
-13	0	  a- err0-        | 
+0	1	goLM+  Rack-    | clk+ Rreq+
+1	2	REreq+		    | sample+
+2	3	err0+			| clk- goML+
+2	4	err1+			| clk- goML+
+3	5	a+      	    | sample- REack+
+4	7	b+      	    | sample- REack+
+5	8	a- err0- 	    | 
+7	8	b- err1-        |
+8	9	goLM-  Rack+    | clk+ Rreq-
+9	10	REreq-			| sample+
+10	11	err0+			| clk- goML-
+10	12	err1+			| clk- goML-
+11	13	a+      	    | sample- REack-
+12	14	b+      	    | sample- REack-
+13	0	a- err0-        | 
 14  0   b- err1-        |

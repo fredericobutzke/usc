@@ -62,8 +62,8 @@ not #1 (e_, e);
 not #1 (c_, c);
 HS65_GS_AO222 U1 (INTERNAL1, b, INTERNAL2, c, d, e, d);
 HS65_GS_AOI13X10 U0 (zs_, e_, c_, INTERNAL2, INTERNAL1);
-nor #1 (INTERNAL2, ~rst, zs_);
 not #1 (zs, zs_);
+and #1 (INTERNAL2, rst, zs);
 
 //Function
 assign #1 zb = b & zb | c & d | e & d | ~e & ~c & zb & rst ;

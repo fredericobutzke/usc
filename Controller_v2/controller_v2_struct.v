@@ -48,9 +48,9 @@ module controller(
 	//REack
 	HS65_GS_AO222X18 U21 (INTERNAL21, goML, INTERNAL22, b, Rreq, a, Rreq);
 	HS65_GS_AOI13X10 U22 (INTERNAL23, a_, b_, INTERNAL22, INTERNAL21);
-	nor #1 (INTERNAL22, ~rst, INTERNAL23);
 	not #1 (REack, INTERNAL23);
-
+	and #1 (INTERNAL22, rst, REack);
+	
 	//assign #1 clk = ~goLM & Rack & ~Err1 & ~Err0 & REack | goLM & ~Rack & ~Err1 & ~Err0 & ~REack ;
 	//Clk
 	HS65_GS_AOI33X14 #1 U31 (INTERNAL31, golm_, Rack, REack, goLM, rack_, reack_);
@@ -60,7 +60,6 @@ module controller(
 	//Sample
 	HS65_GS_AOI22X1 #1 U41 (INTERNAL41, rereq_, REack, REreq, reack_);
 	HS65_GS_AND3ABCX18 #1 U42 (sample, a, b, INTERNAL41);
-
 
 	//assign #1 goML = ~sample & goML & rst | Err1 & Rreq | Err0 & Rreq | ~Err1 & ~Err0 & REack ;	
 	//goML
