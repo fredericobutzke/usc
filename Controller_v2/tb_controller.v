@@ -52,17 +52,11 @@ module tb_controller();
  		$dumpfile("tb_controller.vcd");
       	$dumpvars(0, tb_controller);
 
- 		Lreq = 'b0;
-		Rack = 'b0;
-		LEack = 'b0;
-		REreq = 'b0;
-		Err1 = 'b0;
-		Err0 = 'b0;
-		rst = 'b0;
+ 		{Lreq, Rack, LEack, REreq, Err1, Err0, rst} = 'b0;
 		
 		state = 'b1;
-		counter_error = 'b0;
-		counter_rack = 'b0;
+		{counter_error, counter_rack} = 'b0;
+		
 		#(reset_time);
  		rst = 'b1;
 

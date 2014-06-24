@@ -46,9 +46,8 @@ end
 //Structural
 wire f_;
 not(f_, f);
-HS65_GS_AOI222X13 U0 (INTERNAL2, INTERNAL1, f_, INTERNAL1, e, f_, e);
-not(zs, INTERNAL2);
-and(INTERNAL1, rst, zs);
+HS65_GS_AOI222X13 U0 (INTERNAL2, zs, f_, zs, e, f_, e);
+nor(zs, ~rst, INTERNAL2);
 
 //Function
 assign #1 zb = e & ~f | e & zb | ~f & zb & rst ;

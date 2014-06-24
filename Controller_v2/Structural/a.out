@@ -4,132 +4,100 @@
 :vpi_module "system";
 :vpi_module "v2005_math";
 :vpi_module "va_math";
-S_0x25f32c0 .scope module, "Structural_REack" "Structural_REack" 2 23;
+S_0x11d8ad0 .scope module, "Structural_Rreq" "Structural_Rreq" 2 15;
  .timescale 0 0;
-L_0x260e900/d .functor NOT 1, L_0x2610980, C4<0>, C4<0>, C4<0>;
-L_0x260e900 .delay (1,1,1) L_0x260e900/d;
-L_0x260f3a0/d .functor NOT 1, L_0x2610840, C4<0>, C4<0>, C4<0>;
-L_0x260f3a0 .delay (1,1,1) L_0x260f3a0/d;
-L_0x260fb90/d .functor NOT 1, L_0x260fa80, C4<0>, C4<0>, C4<0>;
-L_0x260fb90 .delay (1,1,1) L_0x260fb90/d;
-L_0x260fc50/d .functor AND 1, v0x260efe0_0, L_0x260fb90, C4<1>, C4<1>;
-L_0x260fc50 .delay (1,1,1) L_0x260fc50/d;
-L_0x260fd60 .functor AND 1, L_0x2610710, L_0x2610610, C4<1>, C4<1>;
-L_0x260fdf0 .functor AND 1, L_0x2610840, L_0x26108e0, C4<1>, C4<1>;
-L_0x260ff50 .functor OR 1, L_0x260fd60, L_0x260fdf0, C4<0>, C4<0>;
-L_0x2610000 .functor AND 1, L_0x2610980, L_0x26108e0, C4<1>, C4<1>;
-L_0x26100f0 .functor OR 1, L_0x260ff50, L_0x2610000, C4<0>, C4<0>;
-L_0x26101f0 .functor NOT 1, L_0x2610980, C4<0>, C4<0>, C4<0>;
-L_0x26102b0 .functor NOT 1, L_0x2610840, C4<0>, C4<0>, C4<0>;
-L_0x2610310 .functor AND 1, L_0x26101f0, L_0x26102b0, C4<1>, C4<1>;
-L_0x2610250 .functor AND 1, L_0x2610310, L_0x2610610, C4<1>, C4<1>;
-L_0x2610490 .functor AND 1, L_0x2610250, v0x260efe0_0, C4<1>, C4<1>;
-L_0x2610610/d .functor OR 1, L_0x26100f0, L_0x2610490, C4<0>, C4<0>;
-L_0x2610610 .delay (1,1,1) L_0x2610610/d;
-v0x260e2a0_0 .net "INTERNAL1", 0 0, L_0x260f740; 1 drivers
-v0x260e320_0 .net "INTERNAL2", 0 0, L_0x260fc50; 1 drivers
-v0x260e3f0_0 .net *"_s10", 0 0, L_0x2610000; 1 drivers
-v0x260e490_0 .net *"_s12", 0 0, L_0x26100f0; 1 drivers
-v0x260e510_0 .net *"_s14", 0 0, L_0x26101f0; 1 drivers
-v0x260e5b0_0 .net *"_s16", 0 0, L_0x26102b0; 1 drivers
-v0x260e650_0 .net *"_s18", 0 0, L_0x2610310; 1 drivers
-v0x260e6f0_0 .net *"_s20", 0 0, L_0x2610250; 1 drivers
-v0x260e7e0_0 .net *"_s22", 0 0, L_0x2610490; 1 drivers
-v0x260e880_0 .net *"_s32", 3 0, v0x260ef10_0; 1 drivers
-v0x260e980_0 .net *"_s4", 0 0, L_0x260fd60; 1 drivers
-v0x260ea20_0 .net *"_s6", 0 0, L_0x260fdf0; 1 drivers
-v0x260eb30_0 .net *"_s8", 0 0, L_0x260ff50; 1 drivers
-v0x260ebd0_0 .net "b", 0 0, L_0x2610710; 1 drivers
-v0x260ecd0_0 .net "c", 0 0, L_0x2610840; 1 drivers
-v0x260ed50_0 .net "c_", 0 0, L_0x260f3a0; 1 drivers
-v0x260ec50_0 .net "d", 0 0, L_0x26108e0; 1 drivers
-v0x260ee90_0 .net "e", 0 0, L_0x2610980; 1 drivers
-v0x260edd0_0 .net "e_", 0 0, L_0x260e900; 1 drivers
-v0x260efe0_0 .var "rst", 0 0;
-v0x260ef10_0 .var "truth_table", 3 0;
-v0x260f110_0 .net "zb", 0 0, L_0x2610610; 1 drivers
-v0x260f060_0 .net "zs", 0 0, L_0x260fb90; 1 drivers
-v0x260f250_0 .net "zs_", 0 0, L_0x260fa80; 1 drivers
-L_0x2610710 .part v0x260ef10_0, 3, 1;
-L_0x2610840 .part v0x260ef10_0, 2, 1;
-L_0x26108e0 .part v0x260ef10_0, 1, 1;
-L_0x2610980 .part v0x260ef10_0, 0, 1;
-S_0x260dac0 .scope module, "U1" "HS65_GS_AO222" 2 63, 2 13, S_0x25f32c0;
+L_0x11ef600 .functor NOT 1, L_0x11f08e0, C4<0>, C4<0>, C4<0>;
+L_0x11f0110 .functor NOR 1, L_0x11f0170, L_0x11f0010, C4<0>, C4<0>;
+L_0x11f0170 .functor NOT 1, v0x11ef8e0_0, C4<0>, C4<0>, C4<0>;
+L_0x11f0220 .functor NOT 1, L_0x11f08e0, C4<0>, C4<0>, C4<0>;
+L_0x11f02d0 .functor AND 1, L_0x11f0a10, L_0x11f0220, C4<1>, C4<1>;
+L_0x11f0380 .functor AND 1, L_0x11f0a10, L_0x11f0830, C4<1>, C4<1>;
+L_0x11f0420 .functor OR 1, L_0x11f02d0, L_0x11f0380, C4<0>, C4<0>;
+L_0x11f0520 .functor NOT 1, L_0x11f08e0, C4<0>, C4<0>, C4<0>;
+L_0x11f05d0 .functor AND 1, L_0x11f0520, L_0x11f0830, C4<1>, C4<1>;
+L_0x11f06d0 .functor AND 1, L_0x11f05d0, v0x11ef8e0_0, C4<1>, C4<1>;
+L_0x11f0830/d .functor OR 1, L_0x11f0420, L_0x11f06d0, C4<0>, C4<0>;
+L_0x11f0830 .delay (1,1,1) L_0x11f0830/d;
+v0x11eefc0_0 .net "INTERNAL2", 0 0, L_0x11f0010; 1 drivers
+v0x11ef090_0 .net *"_s10", 0 0, L_0x11f0420; 1 drivers
+v0x11ef110_0 .net *"_s12", 0 0, L_0x11f0520; 1 drivers
+v0x11ef1b0_0 .net *"_s14", 0 0, L_0x11f05d0; 1 drivers
+v0x11ef260_0 .net *"_s16", 0 0, L_0x11f06d0; 1 drivers
+v0x11ef300_0 .net *"_s2", 0 0, L_0x11f0170; 1 drivers
+v0x11ef3a0_0 .net *"_s24", 1 0, v0x11efa00_0; 1 drivers
+v0x11ef440_0 .net *"_s4", 0 0, L_0x11f0220; 1 drivers
+v0x11ef4e0_0 .net *"_s6", 0 0, L_0x11f02d0; 1 drivers
+v0x11ef580_0 .net *"_s8", 0 0, L_0x11f0380; 1 drivers
+v0x11ef680_0 .net "e", 0 0, L_0x11f0a10; 1 drivers
+v0x11ef700_0 .net "f", 0 0, L_0x11f08e0; 1 drivers
+v0x11ef810_0 .net "f_", 0 0, L_0x11ef600; 1 drivers
+v0x11ef8e0_0 .var "rst", 0 0;
+v0x11efa00_0 .var "truth_table", 1 0;
+v0x11efaa0_0 .net "zb", 0 0, L_0x11f0830; 1 drivers
+v0x11ef960_0 .net "zs", 0 0, L_0x11f0110; 1 drivers
+L_0x11f08e0 .part v0x11efa00_0, 1, 1;
+L_0x11f0a10 .part v0x11efa00_0, 0, 1;
+S_0x11d8bc0 .scope module, "U0" "HS65_GS_AOI222X13" 2 49, 2 4, S_0x11d8ad0;
  .timescale 0 0;
-L_0x260f520 .functor AND 1, L_0x2610710, L_0x260fc50, C4<1>, C4<1>;
-L_0x260f5d0 .functor AND 1, L_0x2610840, L_0x26108e0, C4<1>, C4<1>;
-L_0x260f650 .functor AND 1, L_0x2610980, L_0x26108e0, C4<1>, C4<1>;
-L_0x260f740/d .functor OR 1, L_0x260f520, L_0x260f5d0, L_0x260f650, C4<0>;
-L_0x260f740 .delay (1,1,1) L_0x260f740/d;
-v0x260dbb0_0 .alias "A", 0 0, v0x260ebd0_0;
-v0x260dc70_0 .alias "B", 0 0, v0x260e320_0;
-v0x260dcf0_0 .alias "C", 0 0, v0x260ecd0_0;
-v0x260dd70_0 .alias "D", 0 0, v0x260ec50_0;
-v0x260de20_0 .alias "E", 0 0, v0x260ee90_0;
-v0x260dec0_0 .alias "F", 0 0, v0x260ec50_0;
-v0x260df80_0 .net "INTERNAL2", 0 0, L_0x260f520; 1 drivers
-v0x260e000_0 .net "INTERNAL3", 0 0, L_0x260f5d0; 1 drivers
-v0x260e0f0_0 .net "INTERNAL4", 0 0, L_0x260f650; 1 drivers
-v0x260e190_0 .alias "Z", 0 0, v0x260e2a0_0;
-S_0x25f33b0 .scope module, "U0" "HS65_GS_AOI13X10" 2 64, 2 4, S_0x25f32c0;
- .timescale 0 0;
-L_0x260f8a0 .functor AND 1, L_0x260e900, L_0x260f3a0, L_0x260fc50, C4<1>;
-L_0x260f990 .functor OR 1, L_0x260f8a0, L_0x260f740, C4<0>, C4<0>;
-L_0x260fa80/d .functor NOT 1, L_0x260f990, C4<0>, C4<0>, C4<0>;
-L_0x260fa80 .delay (1,1,1) L_0x260fa80/d;
-v0x25e3e10_0 .alias "A", 0 0, v0x260edd0_0;
-v0x260d6b0_0 .alias "B", 0 0, v0x260ed50_0;
-v0x260d750_0 .alias "C", 0 0, v0x260e320_0;
-v0x260d7f0_0 .alias "D", 0 0, v0x260e2a0_0;
-v0x260d8a0_0 .net "INTERNAL1", 0 0, L_0x260f990; 1 drivers
-v0x260d940_0 .net "INTERNAL2", 0 0, L_0x260f8a0; 1 drivers
-v0x260da20_0 .alias "Z", 0 0, v0x260f250_0;
-    .scope S_0x25f32c0;
+L_0x11efc40 .functor AND 1, L_0x11f0110, L_0x11ef600, C4<1>, C4<1>;
+L_0x11efd50 .functor AND 1, L_0x11f0110, L_0x11f0a10, C4<1>, C4<1>;
+L_0x11efe60 .functor AND 1, L_0x11ef600, L_0x11f0a10, C4<1>, C4<1>;
+L_0x11eff50 .functor OR 1, L_0x11efc40, L_0x11efd50, L_0x11efe60, C4<0>;
+L_0x11f0010/d .functor NOT 1, L_0x11eff50, C4<0>, C4<0>, C4<0>;
+L_0x11f0010 .delay (1,1,1) L_0x11f0010/d;
+v0x11b2ef0_0 .alias "A", 0 0, v0x11ef960_0;
+v0x11ee8e0_0 .alias "B", 0 0, v0x11ef810_0;
+v0x11ee980_0 .alias "C", 0 0, v0x11ef960_0;
+v0x11eea30_0 .alias "D", 0 0, v0x11ef680_0;
+v0x11eeae0_0 .alias "E", 0 0, v0x11ef810_0;
+v0x11eeb90_0 .alias "F", 0 0, v0x11ef680_0;
+v0x11eec50_0 .net "INTERNAL1", 0 0, L_0x11eff50; 1 drivers
+v0x11eecd0_0 .net "INTERNAL2", 0 0, L_0x11efc40; 1 drivers
+v0x11eeda0_0 .net "INTERNAL3", 0 0, L_0x11efd50; 1 drivers
+v0x11eee20_0 .net "INTERNAL4", 0 0, L_0x11efe60; 1 drivers
+v0x11eef20_0 .alias "Z", 0 0, v0x11eefc0_0;
+    .scope S_0x11d8ad0;
 T_0 ;
-    %vpi_call 2 33 "$dumpfile", "Structural_REack.vcd";
-    %vpi_call 2 34 "$dumpvars", 1'sb0, S_0x25f32c0;
-    %set/v v0x260efe0_0, 0, 1;
-    %set/v v0x260ef10_0, 0, 4;
+    %vpi_call 2 23 "$dumpfile", "Structural_Rreq.vcd";
+    %vpi_call 2 24 "$dumpvars", 1'sb0, S_0x11d8ad0;
+    %set/v v0x11ef8e0_0, 0, 1;
+    %set/v v0x11efa00_0, 0, 2;
     %delay 10, 0;
-    %set/v v0x260efe0_0, 1, 1;
-    %vpi_call 2 41 "$display", "inputs\011|| o1  | o2";
-    %movi 8, 15, 5;
-T_0.0 %cmp/s 0, 8, 5;
+    %set/v v0x11ef8e0_0, 1, 1;
+    %vpi_call 2 30 "$display", "Inputs \011|| zb | zs";
+    %movi 8, 3, 3;
+T_0.0 %cmp/s 0, 8, 3;
     %jmp/0xz T_0.1, 5;
-    %add 8, 1, 5;
-    %delay 10, 0;
-    %load/v 13, v0x260ee90_0, 1;
-    %load/v 14, v0x260ec50_0, 1;
-    %load/v 15, v0x260ecd0_0, 1;
-    %load/v 16, v0x260ebd0_0, 1;
-    %vpi_call 2 44 "$display", "%b\011|| %b   |  %b", T<13,4,u>, v0x260f110_0, v0x260f060_0;
-    %load/v 13, v0x260ef10_0, 4;
-    %mov 17, 0, 28;
-    %addi 13, 1, 32;
-    %set/v v0x260ef10_0, 13, 4;
+    %add 8, 1, 3;
+    %delay 5, 0;
+    %load/v 11, v0x11ef680_0, 1;
+    %load/v 12, v0x11ef700_0, 1;
+    %vpi_call 2 33 "$display", "%b \011||  %b | %b", T<11,2,u>, v0x11efaa0_0, v0x11ef960_0;
+    %load/v 11, v0x11efa00_0, 2;
+    %mov 13, 0, 30;
+    %addi 11, 1, 32;
+    %set/v v0x11efa00_0, 11, 2;
     %jmp T_0.0;
 T_0.1 ;
-    %movi 8, 16, 6;
-T_0.2 %cmp/s 0, 8, 6;
+    %movi 8, 4, 4;
+T_0.2 %cmp/s 0, 8, 4;
     %jmp/0xz T_0.3, 5;
-    %add 8, 1, 6;
-    %delay 10, 0;
-    %load/v 14, v0x260ee90_0, 1;
-    %load/v 15, v0x260ec50_0, 1;
-    %load/v 16, v0x260ecd0_0, 1;
-    %load/v 17, v0x260ebd0_0, 1;
-    %vpi_call 2 50 "$display", "%b\011|| %b   |  %b", T<14,4,u>, v0x260f110_0, v0x260f060_0;
-    %load/v 14, v0x260ef10_0, 4;
-    %mov 18, 0, 28;
-    %subi 14, 1, 32;
-    %set/v v0x260ef10_0, 14, 4;
+    %add 8, 1, 4;
+    %delay 5, 0;
+    %load/v 12, v0x11ef680_0, 1;
+    %load/v 13, v0x11ef700_0, 1;
+    %vpi_call 2 39 "$display", "%b \011||  %b | %b", T<12,2,u>, v0x11efaa0_0, v0x11ef960_0;
+    %load/v 12, v0x11efa00_0, 2;
+    %mov 14, 0, 30;
+    %subi 12, 1, 32;
+    %set/v v0x11efa00_0, 12, 2;
     %jmp T_0.2;
 T_0.3 ;
-    %vpi_call 2 54 "$finish";
+    %vpi_call 2 42 "$finish";
     %end;
     .thread T_0;
 # The file index is used to find the file name in the following table.
 :file_names 3;
     "N/A";
     "<interactive>";
-    "Structural_REack.v";
+    "Structural_Rreq.v";
