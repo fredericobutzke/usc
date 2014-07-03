@@ -19,51 +19,54 @@ module controller(
 	
 	//Internal signals
 	wire goML, goLM ;
-	wire REack_ ;
-
-	//Inverters
-	not #1 (Rack_, Rack);
-	not #1 (REreq_, REreq);
-	not #1 (goLM_, goLM);
-	not #1 (sample_, sample);
-	not #1 (Err0_, Err0);
-	not #1 (Err1_, Err1);
-	not #1 (a_, a);
-	not #1 (b_, b);
 
 	assign Lack = goML ;
 	assign LEreq = Lreq ;
-	assign goLM = LEack ;
 
-	assign #1 a = Err0 ;
+	assign #3 a = Err0 ;
 	assign #15 b = Err1;
 
-	//assign #1 Rreq = goLM & ~Rack | goLM & Rreq | ~Rack & Rreq & rst ;
-	//Rreq
-	HS65_GS_AOI222X13 U11 (INTERNAL2, Rreq, Rack_, Rreq, goLM, Rack_, goLM);
-	HS65_GS_NOR2AX13 U12 (Rreq, rst, INTERNAL2);
+	//Inverters
+	HS65_GS_IVX9 U1 (Rack_, Rack);
+	HS65_GS_IVX9 U2 (REreq_, REreq);
+	HS65_GS_IVX9 U3 (REack_, REack);
+	HS65_GS_IVX9 U4 (Err0_, Err0);
+	HS65_GS_IVX9 U5 (Err1_, Err1);
+	
+	HS65_GS_IVX9 U6 (sample_, sample);
+
+	HS65_GS_IVX9 U7 (goLM_, goLM);
+	HS65_GS_IVX9 U8 (a_, a);
+	HS65_GS_IVX9 U9 (b_, b);
+	
+	//Rreq = goLM & ~Rack | goLM & Rreq | ~Rack & Rreq & rst ;
+	HS65_GS_AOI222X2 U11 (INTERNAL11, goLM, Rack_, goLM, Rreq, Rack_, Rreq);
+	HS65_GS_NOR2AX3  U12 (Rreq, rst, INTERNAL11);
 	
 	//assign #1 REack = goML & REack & rst | b & Rreq | a & Rreq | ~a & ~b & REack & rst ;
-	//REack
-	HS65_GS_AO222X18 U21 (INTERNAL21, goML, REack, b, Rreq, a, Rreq);
-	HS65_GS_AOI13X10 U22 (REack_, a_, b_, REack, INTERNAL21);
-	HS65_GS_NOR2AX13 U23 (REack, rst, REack_);
+	//assign #1 REack_ = ~REack;
+	HS65_GS_AO222X4  U21 (INTERNAL21, goML, backREack, b, Rreq, a, Rreq);
+	HS65_GS_AND3X4   U22 (INTERNAL22, a_, b_, backREack);
+	HS65_GS_OR2X4    U23 (REack, INTERNAL21, INTERNAL22);
+	HS65_GS_AND2X4   U24 (backREack, rst, REack);
 
-	//assign #1 clk = ~goLM & Rack & ~Err1 & ~Err0 & REack | goLM & ~Rack & ~Err1 & ~Err0 & ~REack ;
-	//Clk
-	HS65_GS_AOI33X14 U31 (INTERNAL31, goLM_, Rack, REack, goLM, Rack_, REack_);
-	HS65_GS_AND3ABCX18 U32 (clk, Err0, Err1, INTERNAL31);
+	//goML = ~sample & goML & rst | Err1 & Rreq | Err0 & Rreq | ~Err1 & ~Err0 & REack ;	
+	HS65_GS_AOI32X10 U31 (INTERNAL31, Err1_, Err0_, REack, Err1, Rreq);
+	HS65_GS_AOI32X10 U32 (INTERNAL32, sample_, goML, rst, Err0, Rreq);
+	HS65_GS_NAND2X2  U33 (goML, INTERNAL31, INTERNAL32);
 
-	//assign #1 sample = ~REreq & ~a & ~b & REack | REreq & ~a & ~b & ~REack ;
-	//Sample
-	HS65_GS_AOI22X1 U41 (INTERNAL41, REreq_, REack, REreq, REack_);
-	HS65_GS_AND3ABCX18 U42 (sample, a, b, INTERNAL41);
+	//clk = ~goLM & Rack & ~Err1 & ~Err0 & REack | goLM & ~Rack & ~Err1 & ~Err0 & ~REack ;
+	HS65_GS_AO33X4 U41 (INTERNAL41, goLM_, Rack, REack, goLM, Rack_, REack_);
+	HS65_GS_NOR2X2 U42 (INTERNAL42, Err1, Err0);
+	HS65_GS_AND2X4 U43 (clk, INTERNAL41, INTERNAL42);
+	//HS65_GS_NOR3X2 U42 (clk, Err0, Err1, INTERNAL41);
 
-	//assign #1 goML = ~sample & goML & rst | Err1 & Rreq | Err0 & Rreq | ~Err1 & ~Err0 & REack ;	
-	//goML
-	HS65_GS_AOI32X10 U51 (INTERNAL51, sample_, goML, rst, Err1, Rreq);
-	HS65_GS_AOI32X10 U52 (INTERNAL52, Err1_, Err0_, REack, Err0, Rreq);
-	HS65_GS_NAND2X11 U53 (goML, INTERNAL51, INTERNAL52);
+	//sample = ~REreq & ~a & ~b & REack | REreq & ~a & ~b & ~REack ;
+	HS65_GS_AO22X4 U51 (INTERNAL51, REreq_, REack, REreq, REack_);
+	HS65_GS_NOR2X2 U52 (INTERNAL52, a, b);
+	HS65_GS_AND2X4 U53 (sample, INTERNAL52, INTERNAL51);
 
-	
+	//goLM = LEack & rst;
+    HS65_GS_AND2X4 U61 (goLM, LEack, rst);
+
 endmodule

@@ -1,23 +1,34 @@
-//goML = ~sample & goML & rst | Err1 & Rreq | Err0 & Rreq | ~Err1 & ~Err0 & REack ;	
-//zs = 			~a & zs & rst | 	  b & c | 		d & c | ~b & ~d & e ;	
+//goML = ~sample & goML & rst | Err1 & ~Rreq | Err0 & ~Rreq | ~Err1 & ~Err0 & goML & rst ; 
+//goML = ~a & goML & rst | b & ~c | d & ~c | ~b & ~d & goML & rst ; 
 
-module HS65_GS_AOI32X10 (Z, A, B, C, D, E);
+
+module HS65_GS_AO32X4 (Z, A, B, C, D, E);
 	output Z;
 	input A, B, C, D, E;
+	and    U1 (INTERNAL1, A, B, C) ;
+	and    U2 (INTERNAL2, D, E) ;
+	or   #1 U3 (Z, INTERNAL1, INTERNAL2) ;
+endmodule
 
-	and    U1 (INTERNAL2, A, B, C) ;
-	and    U2 (INTERNAL3, D, E) ;
-	or    U3 (INTERNAL1, INTERNAL2, INTERNAL3) ;
-	not   #1 U4 (Z, INTERNAL1) ;
+module HS65_GS_AO22X4 (Z, A, B, C, D);
+	output Z;
+	input A, B, C, D;
+	and    U1 (INTERNAL1, A, B) ;
+	and    U2 (INTERNAL2, C, D) ;
+	or   #1 U3 (Z, INTERNAL1, INTERNAL2) ;
+endmodule
+
+module HS65_GS_OA12X4 (Z, A, B, C);
+	output Z;
+	input A, B, C;
+	or    U1 (INTERNAL1, A, B) ;
+	and   #1 U2 (Z, INTERNAL1, C) ;
 endmodule
 
 module Structural_goML();
 
-reg [5:0] truth_table ;
+reg [3:0] truth_table ;
 reg rst ;
-
-wire zb, zs; 
-wire b, c, d, e ;
 
 initial begin
 
@@ -31,15 +42,15 @@ initial begin
 
 	$display("Starting Simulation");
 	$display("inputs	|| o1  | o2");
-	repeat (31) begin
+	repeat (15) begin
 		#10
-		$display("%b	|| %b   |  %b", {a, b, c, d, e}, zb, zs);
+		$display("%b	|| %b   |  %b", {a, b, c, d }, goML_beh, goML_struct);
 		truth_table = truth_table + 1;
 	end
 
-	repeat (32) begin
+	repeat (16) begin
 		#10
-		$display("%b	|| %b   |  %b", {a, b, c, d, e}, zb, zs);
+		$display("%b	|| %b   |  %b", {a, b, c, d }, goML_beh, goML_struct);
 		truth_table = truth_table - 1;
 	end
 	$display("End of Simulation");
@@ -47,19 +58,14 @@ initial begin
 end
 
 //Structural
-wire a_, b_, d_;
-
-not (a_, a);
-not (b_, b);
-not (d_, d);
-HS65_GS_AOI32X10 U0 (INTERNAL1, a_, zs, rst, b, c);
-HS65_GS_AOI32X10 U1 (INTERNAL2, b_, d_, e, d, c);
-nand #1 (zs, INTERNAL1, INTERNAL2);
+HS65_GS_AO32X4 U1 (INTERNAL1, ~b, ~d, goML_struct, d, ~c);
+HS65_GS_AO22X4 U2 (INTERNAL2, b, ~c, ~a, goML_struct);
+HS65_GS_OA12X4 U3 (goML_struct, INTERNAL1, INTERNAL2, rst);
 
 //Function
-assign #1 zb = ~a & zb & rst | b & c | d & c | ~b & ~d & e ;
+assign #1 goML_beh = ~a & goML_beh & rst | b & ~c | d & ~c | ~b & ~d & goML_beh & rst ;
 
 //Truth Table
-assign {a, b, c, d, e} = truth_table ;
+assign {a, b, c, d} = truth_table ;
 
 endmodule

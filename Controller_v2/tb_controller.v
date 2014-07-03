@@ -5,7 +5,7 @@ module tb_controller();
    parameter error_delay		  	= 7;
    parameter no_error_delay		  	= 2;
 
-   parameter   reset_time           = 30;
+   parameter   reset_time           = 50;
    parameter   break_time		    = 500;
    parameter   step_time            = 1;
    integer     done                 = 0;
@@ -31,7 +31,7 @@ module tb_controller();
     reg [1:0] counter_error ;
     reg [1:0] counter_rack ;
 
-	controller uut(
+	controller_token uut(
 		.Lack(Lack),
 		.Rreq(Rreq),
 		.LEreq(LEreq),
@@ -56,7 +56,7 @@ module tb_controller();
 		
 		state = 'b1;
 		{counter_error, counter_rack} = 'b0;
-		
+
 		#(reset_time);
  		rst = 'b1;
 
@@ -72,7 +72,7 @@ module tb_controller();
 
 	//Lreq
 	always @ (Lack) begin 
-		if(rst)	#10	Lreq = ~Lack;
+		if(rst)	#20	Lreq = ~Lack;
 	end
 
 	//LEack
@@ -81,7 +81,7 @@ module tb_controller();
 	end
 
 	//REreq
-	always @ (Rreq) begin 
+	always @ (Rreq, posedge rst) begin 
  		if(rst)	#(hs_delay)	REreq = Rreq;
 	end
   	

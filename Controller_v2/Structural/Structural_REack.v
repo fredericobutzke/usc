@@ -1,32 +1,34 @@
-//	REack = goML & REack & rst 	| b & Rreq 	| a & Rreq 	| ~a & ~b & REack & rst ;
-//		a = 	b & a & rst 	| 	c & d 	| 	e & d 	| 	~e & ~c & a & rst ;
+//REack = b & Rreq | a & Rreq | REreq & ~sample & ~goML & rst | ~a & ~b & REack & rst; 
+//REack = b & c | a & c | d & ~e & ~f & rst | ~a & ~b & REack & rst; 
 
-module HS65_GS_AOI13X10 (Z, A, B, C, D);
-	output Z;
-	input A, B, C, D;
-
-	and    U1 (INTERNAL2, A, B, C) ;
-	or    U2 (INTERNAL1, INTERNAL2, D) ;
-	not   #1 U3 (Z, INTERNAL1) ;
-endmodule
-
-module HS65_GS_AO222 (Z, A, B, C, D, E, F);
+module HS65_GS_AO33X4 (Z, A, B, C, D, E, F);
 	output Z;
 	input A, B, C, D, E, F;
+	and    U1 (INTERNAL1, A, B, C) ;
+	and    U2 (INTERNAL2, D, E, F) ;
+	or   #1 U3 (Z, INTERNAL1, INTERNAL2) ;
+endmodule
 
+module HS65_GS_AOI212X2 (Z, A, B, C, D, E);
+	output Z;
+	input A, B, C, D, E;
 	and    U1 (INTERNAL2, A, B) ;
 	and    U2 (INTERNAL3, C, D) ;
-	and    U3 (INTERNAL4, E, F) ;
-	or  #1 U4 (Z, INTERNAL2, INTERNAL3, INTERNAL4) ;
+	or    U3 (INTERNAL1, INTERNAL2, INTERNAL3, E) ;
+	not   #1 U4 (Z, INTERNAL1) ;
+endmodule
+
+module HS65_GS_NOR2AX3 (Z, A, B);
+	output Z;
+	input A, B;
+	not    U1 (INTERNAL1, B) ;
+	and   #1 U2 (Z, A, INTERNAL1) ;
 endmodule
 
 module Structural_REack();
 
-reg [3:0] truth_table ;
+reg [5:0] truth_table ;
 reg rst ;
-
-wire zb, zs; 
-wire b, c, d, e ;
 
 initial begin
 
@@ -39,15 +41,15 @@ initial begin
 	rst = 'b1;
 
 	$display("inputs	|| o1  | o2");
-	repeat (15) begin
+	repeat (63) begin
 		#10
-		$display("%b	|| %b   |  %b", {b, c, d, e}, zb, zs);
+		$display("%b	|| %b   |  %b", {a, b, c, d, e, f}, REack_beh, REack_struct);
 		truth_table = truth_table + 1;
 	end
 
-	repeat (16) begin
+	repeat (64) begin
 		#10
-		$display("%b	|| %b   |  %b", {b, c, d, e}, zb, zs);
+		$display("%b	|| %b   |  %b", {a, b, c, d, e, f}, REack_beh, REack_struct);
 		truth_table = truth_table - 1;
 	end
 
@@ -55,20 +57,14 @@ initial begin
 end
 
 //Structural
-wire e_, c_;
-wire zs_;
-
-not #1 (e_, e);
-not #1 (c_, c);
-HS65_GS_AO222 U1 (INTERNAL1, b, INTERNAL2, c, d, e, d);
-HS65_GS_AOI13X10 U0 (zs_, e_, c_, INTERNAL2, INTERNAL1);
-not #1 (zs, zs_);
-and #1 (INTERNAL2, rst, zs);
+HS65_GS_AO33X4   U1 (INTERNAL1, ~a, ~b, REack_struct, d, ~e, ~f);
+HS65_GS_AOI212X2 U2 (REack_struct_, b, c, a, c, INTERNAL1);
+HS65_GS_NOR2AX3  U3 (REack_struct, rst, REack_struct_);
 
 //Function
-assign #1 zb = b & zb | c & d | e & d | ~e & ~c & zb & rst ;
+assign #1 REack_beh = b & c | a & c | d & ~e & ~f & rst | ~a & ~b & REack_beh & rst; 
 
 //Truth Table
-assign {b, c, d, e} = truth_table ;
+assign {a, b, c, d, e, f} = truth_table ;
 
 endmodule

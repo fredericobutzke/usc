@@ -1,10 +1,9 @@
-//Rreq
-//Rreq = goLM & ~Rack | goLM & Rreq | ~Rack & Rreq & rst ;
+//Rreq = ~goLM & ~Rack | ~goLM & Rreq | ~Rack & Rreq & rst;
+//Rreq = ~a & ~b | ~a & Rreq | ~b & Rreq & rst ;
 
-module HS65_GS_AOI222X13 (Z, A, B, C, D, E, F);
+module HS65_GS_AOI222X2 (Z, A, B, C, D, E, F);
 	output Z;
 	input A, B, C, D, E, F;
-
 	and    U1 (INTERNAL2, A, B) ;
 	and    U2 (INTERNAL3, C, D) ;
 	and    U3 (INTERNAL4, E, F) ;
@@ -12,9 +11,15 @@ module HS65_GS_AOI222X13 (Z, A, B, C, D, E, F);
 	not   #1 U5 (Z, INTERNAL1) ;
 endmodule
 
+module HS65_GS_NOR2AX3 (Z, A, B);
+	output Z;
+	input A, B;
+	not    U1 (INTERNAL1, B) ;
+	and   #1 U2 (Z, A, INTERNAL1) ;
+endmodule
+
 module Structural_Rreq();
 
-wire zb, a2, zs, a5, a, e, f;
 reg rst ;
 reg [1:0] truth_table ;
 
@@ -27,16 +32,16 @@ initial begin
 	#10
 	rst = 'b1;
 
-	$display("Inputs 	|| zb | zs");
+	$display("Inputs 	|| Beh | Struct");
 	repeat (3) begin
 		#5
-		$display("%b 	||  %b | %b", {f, e}, zb, zs);
+		$display("%b 	||  %b | %b", {a,b}, Rreq_beh, Rreq_struct);
 		truth_table = truth_table + 1;
 	end
 
 	repeat (4) begin
 		#5
-		$display("%b 	||  %b | %b", {f, e}, zb, zs);
+		$display("%b 	||  %b | %b", {a,b}, Rreq_beh, Rreq_struct);
 		truth_table = truth_table - 1;
 	end
 	$finish;
@@ -44,15 +49,13 @@ initial begin
 end
 
 //Structural
-wire f_;
-not(f_, f);
-HS65_GS_AOI222X13 U0 (INTERNAL2, zs, f_, zs, e, f_, e);
-nor(zs, ~rst, INTERNAL2);
+HS65_GS_AOI222X2 U1 (INTERNAL1, ~a, ~b, ~a, Rreq_struct, ~b, Rreq_struct);
+HS65_GS_NOR2AX3 U2 (Rreq_struct, rst, INTERNAL1);
 
 //Function
-assign #1 zb = e & ~f | e & zb | ~f & zb & rst ;
+assign #1 Rreq_beh = ~a & ~b | ~a & Rreq_beh | ~b & Rreq_beh & rst ;
 
 //Truth Table
-assign {f, e} = truth_table ;
+assign {a,b} = truth_table ;
 
 endmodule

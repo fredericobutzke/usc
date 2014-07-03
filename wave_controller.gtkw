@@ -1,18 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
-[*] Thu Jun 19 19:28:05 2014
+[*] Sat Jun 28 03:25:21 2014
 [*]
-[dumpfile] "/home/fredericobutzke/Desktop/USC/Controller_v2/tb_controller.vcd"
-[dumpfile_mtime] "Thu Jun 19 19:26:08 2014"
-[dumpfile_size] 2468
-[savefile] "/home/fredericobutzke/Desktop/USC/wave_controller.gtkw"
+[dumpfile] "/home/fredericobutzke/Desktop/School/University of Southern California/Controller_v2/tb_controller.vcd"
+[dumpfile_mtime] "Sat Jun 28 03:23:12 2014"
+[dumpfile_size] 7105
+[savefile] "/home/fredericobutzke/Desktop/School/University of Southern California/wave_controller.gtkw"
 [timestart] 0
 [size] 1366 744
 [pos] -1 -1
-*-7.000000 64 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.000000 66800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb_controller.
+[treeopen] tb_controller.uut.
 [sst_width] 223
-[signals_width] 188
+[signals_width] 201
 [sst_expanded] 1
 [sst_vpaned_height] 211
 @200
@@ -26,8 +27,8 @@ tb_controller.Rack
 -Handshake Outputs
 @28
 tb_controller.LEreq
-tb_controller.Rreq
 tb_controller.Lack
+tb_controller.Rreq
 tb_controller.REack
 @200
 -Control Inputs
@@ -41,9 +42,8 @@ tb_controller.clk
 tb_controller.sample
 @200
 -Internal Signals
-@29
-tb_controller.uut.rst
 @28
+tb_controller.uut.rst
 tb_controller.uut.a
 tb_controller.uut.b
 tb_controller.uut.goLM
