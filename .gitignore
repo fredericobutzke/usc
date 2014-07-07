@@ -1,5 +1,5 @@
 *.out
 *.vcd
-
+*.pdf
 Controller_v2/*.vcd
 Controller_v2/*.out

@@ -10,7 +10,9 @@ module controller(
 	input LEack,
 	input REreq,
 	input Err1,
+	//input b,
 	input Err0,
+	//input a,
 	input rst
 );
 
@@ -23,21 +25,30 @@ module controller(
 	assign Lack = goML ;
 	assign LEreq = Lreq ;
 
-	assign #3 a = Err0 ;
-	assign #15 b = Err1;
+	//assign #3 a = Err0 ;
+	HS65_GS_BFX4 UB11 (INTERNALB11, Err0);
+	HS65_GS_BFX4 UB12 (INTERNALB12, INTERNALB11);
+	HS65_GS_BFX4 UB13 (a, INTERNALB12);
+
+	//assign #15 b = Err1;	
+	HS65_GS_BFX4 UB21 (INTERNALB21, Err1);
+	HS65_GS_BFX4 UB22 (INTERNALB22, INTERNALB21);
+	HS65_GS_BFX4 UB23 (INTERNALB23, INTERNALB22);
+	HS65_GS_BFX4 UB24 (INTERNALB24, INTERNALB23);
+	HS65_GS_BFX4 UB25 (b, INTERNALB24);
 
 	//Inverters
-	HS65_GS_IVX9 U1 (Rack_, Rack);
-	HS65_GS_IVX9 U2 (REreq_, REreq);
-	HS65_GS_IVX9 U3 (REack_, REack);
-	HS65_GS_IVX9 U4 (Err0_, Err0);
-	HS65_GS_IVX9 U5 (Err1_, Err1);
+	HS65_GS_IVX9 U01 (Rack_, Rack);
+	HS65_GS_IVX9 U02 (REreq_, REreq);
+	HS65_GS_IVX9 U03 (REack_, REack);
+	HS65_GS_IVX9 U04 (Err0_, Err0);
+	HS65_GS_IVX9 U05 (Err1_, Err1);
 	
-	HS65_GS_IVX9 U6 (sample_, sample);
+	HS65_GS_IVX9 U06 (sample_, sample);
 
-	HS65_GS_IVX9 U7 (goLM_, goLM);
-	HS65_GS_IVX9 U8 (a_, a);
-	HS65_GS_IVX9 U9 (b_, b);
+	HS65_GS_IVX9 U07 (goLM_, goLM);
+	HS65_GS_IVX9 U08 (a_, a);
+	HS65_GS_IVX9 U09 (b_, b);
 	
 	//Rreq = goLM & ~Rack | goLM & Rreq | ~Rack & Rreq & rst ;
 	HS65_GS_AOI222X2 U11 (INTERNAL11, goLM, Rack_, goLM, Rreq, Rack_, Rreq);

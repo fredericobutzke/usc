@@ -1,3 +1,4 @@
+
 module tb_controller();
 
    // simulation variables
@@ -31,7 +32,7 @@ module tb_controller();
     reg [1:0] counter_error ;
     reg [1:0] counter_rack ;
 
-	controller_token uut(
+	controller uut(
 		.Lack(Lack),
 		.Rreq(Rreq),
 		.LEreq(LEreq),
@@ -71,7 +72,7 @@ module tb_controller();
  	//Here I need to simulate the pipeline environment
 
 	//Lreq
-	always @ (Lack) begin 
+	always @ (Rack) begin 
 		if(rst)	#20	Lreq = ~Lack;
 	end
 
