@@ -64,8 +64,7 @@ module controller(
 	HS65_GS_AO33X4 U41 (INTERNAL41, LEack_, Rack, REack, LEack, Rack_, REack_);
 	HS65_GS_NOR2X2 U42 (INTERNAL42, Err1, Err0);
 	HS65_GS_AND2X4 U43 (clk, INTERNAL41, INTERNAL42);
-	//HS65_GS_NOR3X2 U42 (clk, Err0, Err1, INTERNAL41);
-
+	
 	//sample = ~REreq & ~a & ~b & REack | REreq & ~a & ~b & ~REack ;
 	HS65_GS_AO22X4 U51 (INTERNAL51, REreq_, REack, REreq, REack_);
 	HS65_GS_NOR2X2 U52 (INTERNAL52, a, b);

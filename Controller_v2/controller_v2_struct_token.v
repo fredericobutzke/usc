@@ -58,7 +58,6 @@ module controller_token(
 	HS65_GS_AO22X4 U32 (INTERNAL32, Err1, Rreq_, sample_, Lack);
 	HS65_GS_OA12X4 U33 (Lack, INTERNAL31, INTERNAL32, rst);
 
-	//HS65_GS_AND3ABCX9 must be 3 times slower.. Delay of #3.
     //clk = ~LEack & ~Rack & ~Err1 & ~Err0 & Lack | LEack & Rack & ~Err1 & ~Err0 & REack ;
 	HS65_GS_AOI33X2   U41 (INTERNAL41, LEack_, Rack_, Lack, LEack, Rack, REack);
 	HS65_GS_AND3ABCX9 U42 (clk, Err0, Err1, INTERNAL41);
