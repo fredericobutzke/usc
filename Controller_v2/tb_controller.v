@@ -32,7 +32,7 @@ module tb_controller();
     reg [1:0] counter_error ;
     reg [1:0] counter_rack ;
 
-	controller uut(
+	controller_token uut(
 		.Lack(Lack),
 		.Rreq(Rreq),
 		.LEreq(LEreq),
@@ -70,10 +70,9 @@ module tb_controller();
 
 
  	//Here I need to simulate the pipeline environment
-
 	//Lreq
-	always @ (Rack) begin 
-		if(rst)	#20	Lreq = ~Lack;
+	always @ (Lack) begin 
+		if(rst)	#(hs_delay)	Lreq = ~Lack;
 	end
 
 	//LEack

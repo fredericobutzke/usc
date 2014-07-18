@@ -105,32 +105,7 @@ module pipeline_auto();
 
 			//If its odd then its a token controller
 			end else begin
-				if (i == 0) begin
- 					controller_token 
-					ctl_token (
-						//outputs
-				  		.Lack(Rack_o[stages-1]),
-				  		.Rreq(Rreq_o[i]),
-				  		.LEreq(REreq_o[stages-1]),
-				  		.REack(REack_o[i]),
-				  		.clk(clk[i]),
-				  		.sample(sample[i]),
-				  		//inputs
-				  		.Lreq(Rreq[stages-1]),
-				  		.Rack(Rack[i]),
-				  		.LEack(REack[stages-1]),
-				  		.REreq(REreq[i]),
-				  		.Err1(Err1[i]),
-				  		.Err0(Err0[i]),
-				  		.rst(rst)
-					);
-
-					assign #(hs_delay) Rack[stages-1] = Rack_o[stages-1] ;
-					assign #(hs_delay) Rreq[i] = Rreq_o[i] ;
-					assign #(hs_delay) REreq[stages-1] = REreq_o[stages-1] ;
-					assign #(hs_delay) REack[i] = REack_o[i] ;
-				
-				end else begin
+	
 				   controller_token 
 					ctl_token (
 						//outputs
@@ -155,7 +130,6 @@ module pipeline_auto();
 					assign #(hs_delay) REreq[i-1] = REreq_o[i-1] ;
 					assign #(hs_delay) REack[i] = REack_o[i] ;
 
-				end
 			end
 		end
 	endgenerate

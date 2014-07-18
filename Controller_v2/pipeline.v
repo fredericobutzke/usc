@@ -13,7 +13,7 @@ wire     clk_0,	 	  clk_1,     clk_2;
 wire  sample_0,	   sample_1,  sample_2;
 reg     Err1_0,	 	 Err1_1,    Err1_2;
 wire    Err0_0,	 	 Err0_1,    Err0_2;
-reg rst;
+reg 	rst;
 
 initial begin
 	$dumpfile("pipeline.vcd");
