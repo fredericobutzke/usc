@@ -1,0 +1,63 @@
+[*]
+[*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
+[*] Mon Nov 24 16:57:51 2014
+[*]
+[dumpfile] "/home/fredericobutzke/Desktop/School/USC/Controller_v3/edl/tb_controller.vcd"
+[dumpfile_mtime] "Mon Nov 24 16:57:45 2014"
+[dumpfile_size] 8047
+[savefile] "/home/fredericobutzke/Desktop/School/USC/Controller_v3/testbench/wave.gtkw"
+[timestart] 0
+[size] 1366 744
+[pos] -1 -1
+*-7.000000 181 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_controller.
+[treeopen] tb_controller.uut.
+[sst_width] 223
+[signals_width] 138
+[sst_expanded] 1
+[sst_vpaned_height] 211
+@28
+[color] 3
+tb_controller.uut.Lreq
+[color] 5
+tb_controller.uut.LEreq
+[color] 3
+tb_controller.uut.LEack
+[color] 5
+tb_controller.uut.Lack
+[color] 5
+tb_controller.uut.Rreq
+[color] 3
+tb_controller.uut.REreq
+[color] 5
+tb_controller.uut.REack
+[color] 3
+tb_controller.uut.Rack
+@200
+-
+@28
+tb_controller.uut.clk
+tb_controller.uut.sample
+tb_controller.uut.Err0
+tb_controller.uut.Err1
+@200
+-
+@28
+tb_controller.uut.delay
+tb_controller.uut.goD
+tb_controller.uut.edi
+tb_controller.uut.edo
+tb_controller.uut.z0
+tb_controller.uut.z1
+@24
+tb_controller.rand.rand[31:0]
+@28
+tb_controller.uut.rst
+tb_controller.uut.U43.Y
+@29
+tb_controller.uut.U43.A
+tb_controller.uut.U43.B
+tb_controller.uut.U43.C
+tb_controller.uut.U43.D
+[pattern_trace] 1
+[pattern_trace] 0

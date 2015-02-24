@@ -1,0 +1,66 @@
+[*]
+[*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
+[*] Fri Jul 18 18:21:41 2014
+[*]
+[dumpfile] "/home/fredericobutzke/Desktop/School/USC/Controller_v2/pipeline_auto.vcd"
+[dumpfile_mtime] "Fri Jul 18 18:18:50 2014"
+[dumpfile_size] 34675
+[savefile] "/home/fredericobutzke/Desktop/School/USC/Controller_v2/wave_pipeline_auto.gtkw"
+[timestart] 0
+[size] 1366 744
+[pos] -1 -1
+*-17.000000 47800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] pipeline_auto.
+[treeopen] pipeline_auto.controller[0].
+[treeopen] pipeline_auto.controller[0].genblk3.
+[treeopen] pipeline_auto.controller[1].
+[treeopen] pipeline_auto.controller[1].genblk5.
+[treeopen] pipeline_auto.controller[1].genblk5.ctl_token.
+[treeopen] pipeline_auto.controller[2].
+[treeopen] pipeline_auto.controller[2].genblk4.
+[sst_width] 223
+[signals_width] 129
+[sst_expanded] 1
+[sst_vpaned_height] 211
+@200
+-Stage 1
+@28
+pipeline_auto.controller[0].genblk3.ctl.Lreq
+pipeline_auto.controller[0].genblk3.ctl.LEreq
+pipeline_auto.controller[0].genblk3.ctl.LEack
+pipeline_auto.controller[0].genblk3.ctl.Lack
+pipeline_auto.controller[0].genblk3.ctl.Rreq
+pipeline_auto.controller[0].genblk3.ctl.REreq
+pipeline_auto.controller[0].genblk3.ctl.REack
+pipeline_auto.controller[0].genblk3.ctl.Rack
+pipeline_auto.controller[0].genblk3.ctl.clk
+pipeline_auto.controller[0].genblk3.ctl.sample
+@200
+-Stage 2
+@28
+pipeline_auto.controller[1].genblk5.ctl_token.Lreq
+pipeline_auto.controller[1].genblk5.ctl_token.LEreq
+pipeline_auto.controller[1].genblk5.ctl_token.LEack
+pipeline_auto.controller[1].genblk5.ctl_token.Lack
+pipeline_auto.controller[1].genblk5.ctl_token.Rreq
+pipeline_auto.controller[1].genblk5.ctl_token.REreq
+pipeline_auto.controller[1].genblk5.ctl_token.REack
+pipeline_auto.controller[1].genblk5.ctl_token.Rack
+pipeline_auto.controller[1].genblk5.ctl_token.clk
+@29
+pipeline_auto.controller[1].genblk5.ctl_token.sample
+@200
+-Stage 3
+@28
+pipeline_auto.controller[2].genblk4.ctl.Lreq
+pipeline_auto.controller[2].genblk4.ctl.LEreq
+pipeline_auto.controller[2].genblk4.ctl.LEack
+pipeline_auto.controller[2].genblk4.ctl.Lack
+pipeline_auto.controller[2].genblk4.ctl.Rreq
+pipeline_auto.controller[2].genblk4.ctl.REreq
+pipeline_auto.controller[2].genblk4.ctl.REack
+pipeline_auto.controller[2].genblk4.ctl.Rack
+pipeline_auto.controller[2].genblk4.ctl.clk
+pipeline_auto.controller[2].genblk4.ctl.sample
+[pattern_trace] 1
+[pattern_trace] 0

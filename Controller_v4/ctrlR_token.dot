@@ -1,0 +1,19 @@
+digraph ctrlR_token {
+	si0 [ style = filled , color = "blue" ];
+
+	si0 -> si1 [ label = "rst+ / Rreq+" ];
+	si1 -> s12 [ label = "REreq+ / REack+" ];
+	s2 -> s3 [ label = "REreq- Err1+ / edo+" ];
+	s3 -> s5 [ label = "edi+ / REack- goD- edo-" ];
+	s2 -> s4 [ label = "REreq- Err0+ / REack- goD-" ];
+	s5 -> s6 [ label = "Err1- edi- /" ];
+	s4 -> s6 [ label = "Err0- /" ];
+	s6 -> s7 [ label = "goR- Rack- / goD+ Rreq+" ];
+	s7 -> s9 [ label = "REreq+ Err1+ / edo+" ];
+	s9 -> s11 [ label = "edi+ / REack+ goD- edo-" ];
+	s7 -> s10 [ label = "REreq+ Err0+ / REack+ goD-" ];
+	s11 -> s12 [ label = "Err1- edi- /" ];
+	s10 -> s12 [ label = "Err0- /" ];
+	s12 -> s2 [ label = "goR+ Rack+ / goD+ Rreq-" ];
+
+}

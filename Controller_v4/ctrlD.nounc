@@ -1,0 +1,14 @@
+input goD 0
+input delay 0
+
+output CLK 0
+output goL 0
+output sample 0
+
+0	1	goD+		| CLK+
+1	2	delay+		| goL+ sample+ CLK-
+2	3	goD- delay*	| sample-
+3	4	delay- goD+	| CLK+
+4	5	delay+		| goL- sample+ CLK-
+5	6	goD-		| sample-
+6	0	delay-		| 

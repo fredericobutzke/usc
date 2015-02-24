@@ -1,0 +1,23 @@
+digraph ctrlR {
+
+	s0 [ style = filled , color = "blue" ];
+
+	// Left Side
+	s0 -> s1 [ label = "goR+ Rack- / goD+ Rreq+" ];
+	s1 -> s2 [ label = "REreq+ err1+ / edo+" ];
+	s2 -> s4 [ label = "edi+ / REack+ goD- edo-" ];
+	s1 -> s3 [ label = "REeq+ err0+ / REack+ goD-" ];
+
+	s4 -> s6 [ label = "err1- edi- / " ];
+	s3 -> s6 [ label = "err0- / " ];
+	
+	// Right Side
+	s6 -> s7 [ label = "goR- Rack+ / goD+ Rreq-" ];
+	s7 -> s8 [ label = "REreq- err1+ / edo+" ];
+	s8 -> s10 [ label = "edi+ / REack- goD- edo-" ];
+	s7 -> s9 [ label = "REreq- err0+ / REack- goD-" ];
+
+	s10 -> s0 [ label = "err1- edi- / " ];
+	s9 -> s0 [ label = "err0- / " ];
+	
+}

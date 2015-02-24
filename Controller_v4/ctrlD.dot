@@ -1,0 +1,11 @@
+digraph ctrlD {
+	s0 [ style = filled , color = "blue" ];
+
+	// Left Side
+	s0 -> s1 [ label = "goD+ / CLK+" ];
+	s1 -> s2 [ label = "delay+ / goL+ sample+ CLK-" ];
+	s2 -> s3 [ label = "goD- delay- / sample-" ];
+	s3 -> s4 [ label = "goD+ / CLK+" ];
+	s4 -> s5 [ label = "delay+ / goL- sample+ CLK-" ];
+	s5 -> s0 [ label = "goD- delay- / sample-" ];
+}

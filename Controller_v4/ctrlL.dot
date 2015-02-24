@@ -1,0 +1,10 @@
+digraph ctrlL {
+	s0 [ style = filled , color = "blue" ];
+
+	s0 -> s1 [ label = "LReq+ / LEreq+" ];
+	s1 -> s2 [ label = "LEack+ / goR+" ];
+	s2 -> s3 [ label = "goL+ / Lack+" ];
+	s3 -> s4 [ label = "Lreq- / LEreq-" ];
+	s4 -> s5 [ label = "LEack- / goR-" ];
+	s5 -> s0 [ label = "goL- / Lack-" ];
+}
